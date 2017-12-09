@@ -32,7 +32,7 @@ jobs:
       - run:
           name: Tag resulting build image
           command: |
-            if [ "${CIRCLE_BRANCH}" = "master" ] && [ ! -z "${CIRCLE_TAG:-}" ];
+            if [ ! -z "${CIRCLE_TAG:-}" ];
             then
               docker tag hassioaddons/qemu-user-static:test "hassioaddons/qemu-user-static:${CIRCLE_TAG:-}"
               docker tag hassioaddons/qemu-user-static:test hassioaddons/qemu-user-static:latest 
@@ -49,15 +49,15 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" = "master" ]; then
                   docker push hassioaddons/qemu-user-static:test
-                  if [ ! -z "${CIRCLE_TAG:-}" ]; then
-                      docker push "hassioaddons/qemu-user-static:${CIRCLE_TAG:-}"
-                      docker push hassioaddons/qemu-user-static:latest 
-                  fi
+            fi
+            if [ ! -z "${CIRCLE_TAG:-}" ]; then
+                docker push "hassioaddons/qemu-user-static:${CIRCLE_TAG:-}"
+                docker push hassioaddons/qemu-user-static:latest 
             fi
       - run:
           name: Pack & release binaries on GitHub
           command: |
-            if [ "${CIRCLE_BRANCH}" = "master" ] && [ ! -z "${CIRCLE_TAG:-}" ];
+            if [ ! -z "${CIRCLE_TAG:-}" ];
             then
                 cd build
                 for file in $FILES; do
