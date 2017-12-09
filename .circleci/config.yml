@@ -5,7 +5,6 @@ jobs:
     docker:
       - image: docker:17.10.0-ce-git
     environment:
-      - VERSION: "2.10.1-1"
       - PACKAGE: "https://www.rpmfind.net/linux/fedora/linux/updates/27/x86_64/Packages/q/qemu-user-static-2.10.1-1.fc27.x86_64.rpm"
       - FILES: "qemu-arm-static qemu-aarch64-static"
     steps:
@@ -58,7 +57,7 @@ jobs:
       - run:
           name: Pack & release binaries on GitHub
           command: |
-            if [ "${CIRCLE_BRANCH}" = "master" ] || [ ! -z "${CIRCLE_TAG:-}" ];
+            if [ "${CIRCLE_BRANCH}" = "master" ] && [ ! -z "${CIRCLE_TAG:-}" ];
             then
                 cd build
                 for file in $FILES; do
@@ -70,7 +69,7 @@ jobs:
                     -H "Authorization: token ${GITHUB_TOKEN}" \
                     -H "Cache-Control: no-cache" \
                     "https://api.github.com/repos/hassio-addons/qemu-user-static/releases" \
-                      | jq -r --arg version "${VERSION}" '.[] | select(.tag_name == "v"+$version).id')
+                      | jq -r --arg version "${CIRCLE_TAG:-}" '.[] | select(.tag_name == "v"+$version).id')
                 if [ -z "$release_id" ]; then
                     echo "Release on GitHub not found!"
                     exit 1
