@@ -69,7 +69,7 @@ jobs:
                     -H "Authorization: token ${GITHUB_TOKEN}" \
                     -H "Cache-Control: no-cache" \
                     "https://api.github.com/repos/hassio-addons/qemu-user-static/releases" \
-                      | jq -r --arg version "${CIRCLE_TAG:-}" '.[] | select(.tag_name == "v"+$version).id')
+                      | jq -r --arg version "${CIRCLE_TAG:-}" '.[] | select(.tag_name == $version).id')
                 if [ -z "$release_id" ]; then
                     echo "Release on GitHub not found!"
                     exit 1
