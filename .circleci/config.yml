@@ -1,0 +1,94 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: docker:17.10.0-ce-git
+    environment:
+      - VERSION: "2.10.1-1"
+      - PACKAGE: "https://www.rpmfind.net/linux/fedora/linux/updates/27/x86_64/Packages/q/qemu-user-static-2.10.1-1.fc27.x86_64.rpm"
+      - FILES: "qemu-arm-static qemu-aarch64-static"
+    steps:
+      - run:
+          name: Build requirements
+          command: apk add --no-cache rpm tar jq curl file
+      - checkout
+      - run:
+          name: Download & unpack qemu-user-static
+          command: |
+            curl -sL -o /tmp/qemu-user-static.rpm "${PACKAGE}"
+            (cd /tmp && rpm2cpio /tmp/qemu-user-static.rpm | cpio -dimv)
+            for file in $FILES; do
+              cp "/tmp/usr/bin/${file}" build/
+            done
+      - setup_remote_docker
+      - run:
+          name: Build docker container
+          command: |
+            docker build \
+              --tag hassioaddons/qemu-user-static:test \
+              --build-arg BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ") \
+              --build-arg BUILD_REF="${CIRCLE_SHA1}" \
+              qemu-user-static
+      - run:
+          name: Tag resulting build image
+          command: |
+            if [ "${CIRCLE_BRANCH}" = "master" ] && [ ! -z "${CIRCLE_TAG:-}" ];
+            then
+              docker tag hassioaddons/qemu-user-static:test "hassioaddons/qemu-user-static:${CIRCLE_TAG:-}"
+              docker tag hassioaddons/qemu-user-static:test hassioaddons/qemu-user-static:latest 
+            fi
+      - run:
+          name: Log in to Docker Hub
+          command: |
+            if [ "${CIRCLE_BRANCH}" = "master" ] || [ ! -z "${CIRCLE_TAG:-}" ];
+            then
+              docker login -u "${DOCKER_LOGIN}" -p "${DOCKER_PASSWORD}"
+            fi
+      - run:
+          name: Push to Dockerhub
+          command: |
+            if [ "${CIRCLE_BRANCH}" = "master" ]; then
+                  docker push hassioaddons/qemu-user-static:test
+                  if [ ! -z "${CIRCLE_TAG:-}" ]; then
+                      docker push "hassioaddons/qemu-user-static:${CIRCLE_TAG:-}"
+                      docker push hassioaddons/qemu-user-static:latest 
+                  fi
+            fi
+      - run:
+          name: Pack & release binaries on GitHub
+          command: |
+            if [ "${CIRCLE_BRANCH}" = "master" ] || [ ! -z "${CIRCLE_TAG:-}" ];
+            then
+                cd build
+                for file in $FILES; do
+                    tar -czf "${file}.tar.gz" "${file}";
+                done
+                release_id=$(set -x; curl -sL \
+                    -H "Content-Type: application/json" \
+                    -H "Accept: application/vnd.github.v3+json" \
+                    -H "Authorization: token ${GITHUB_TOKEN}" \
+                    -H "Cache-Control: no-cache" \
+                    "https://api.github.com/repos/hassio-addons/qemu-user-static/releases" \
+                      | jq -r --arg version "${VERSION}" '.[] | select(.tag_name == "v"+$version).id')
+                if [ -z "$release_id" ]; then
+                    echo "Release on GitHub not found!"
+                    exit 1
+                fi
+                for file in $FILES; do
+                    content_type=$(file --mime-type -b "${file}")
+                    curl -sL \
+                        -H "Authorization: token ${GITHUB_TOKEN}" \
+                        -H "Content-Type: ${content_type}" \
+                        --upload-file "${file}" \
+                        "https://uploads.github.com/repos/hassio-addons/qemu-user-static/releases/${release_id}/assets?name=${file}" \
+                          | jq
+                    content_type=$(file --mime-type -b "${file}.tar.gz")
+                    curl -sL \
+                        -H "Authorization: token ${GITHUB_TOKEN}" \
+                        -H "Content-Type: ${content_type}" \
+                        --upload-file "${file}.tar.gz" \
+                        "https://uploads.github.com/repos/hassio-addons/qemu-user-static/releases/${release_id}/assets?name=${file}.tar.gz" \
+                          | jq
+                done
+            fi
