@@ -1,4 +1,4 @@
-# Community Hass.io Add-ons: qemu-static-binaries
+# Community Hass.io Add-ons: qemu-user-static
 
 [![GitHub Release][releases-shield]][releases]
 ![Project Stage][project-stage-shield]
