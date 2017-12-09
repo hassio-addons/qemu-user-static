@@ -91,3 +91,12 @@ jobs:
                           | jq
                 done
             fi
+
+workflows:
+  version: 2
+  build_and_maybe_deploy:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /.*/
