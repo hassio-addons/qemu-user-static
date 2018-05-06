@@ -8,13 +8,8 @@
 
 [![CircleCI][circleci-shield]][circleci]
 [![Code Climate][codeclimate-shield]][codeclimate]
-[![Bountysource][bountysource-shield]][bountysource]
 [![Discord][discord-shield]][discord]
 [![Community Forum][forum-shield]][forum]
-
-[![Patreon][patreon-shield]][patreon]
-[![PayPal][paypal-shield]][paypal]
-[![Bitcoin][bitcoin-shield]][bitcoin]
 
 ## About
 
@@ -114,10 +109,6 @@ SOFTWARE.
 [microbadger]: https://microbadger.com/images/hassioaddons/qemu-user-static
 [pulls-shield]: https://img.shields.io/docker/pulls/hassioaddons/qemu-user-static.svg
 [version-shield]: https://images.microbadger.com/badges/version/hassioaddons/qemu-user-static.svg
-[bitcoin-shield]: https://img.shields.io/badge/donate-bitcoin-blue.svg
-[bitcoin]: https://blockchain.info/payment_request?address=3GVzgN6NpVtfXnyg5dQnaujtqVTEDBCtAH
-[bountysource-shield]: https://img.shields.io/bountysource/team/hassio-addons/activity.svg
-[bountysource]: https://www.bountysource.com/teams/hassio-addons/issues
 [circleci-shield]: https://img.shields.io/circleci/project/github/hassio-addons/qemu-user-static.svg
 [circleci]: https://circleci.com/gh/hassio-addons/qemu-user-static
 [codeclimate-shield]: https://img.shields.io/badge/code%20climate-protected-brightgreen.svg
@@ -133,10 +124,6 @@ SOFTWARE.
 [issue]: https://github.com/hassio-addons/qemu-user-static/issues
 [license-shield]: https://img.shields.io/github/license/hassio-addons/qemu-user-static.svg
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2017.svg
-[patreon-shield]: https://img.shields.io/badge/donate-patreon-blue.svg
-[patreon]: https://www.patreon.com/frenck
-[paypal-shield]: https://img.shields.io/badge/donate-paypal-blue.svg
-[paypal]: https://www.paypal.me/FranckNijhof
 [project-stage-shield]: https://img.shields.io/badge/project%20stage-production%20ready-brightgreen.svg
 [reddit]: https://reddit.com/r/homeassistant
 [releases-shield]: https://img.shields.io/github/release/hassio-addons/qemu-user-static.svg
