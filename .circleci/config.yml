@@ -10,7 +10,7 @@ jobs:
     steps:
       - run:
           name: Build requirements
-          command: apk add --no-cache rpm tar jq curl file
+          command: apk add --no-cache rpm tar jq curl curl-dev file
       - checkout
       - run:
           name: Download & unpack qemu-user-static
