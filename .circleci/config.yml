@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: docker:17.10.0-ce-git
     environment:
-      - PACKAGE: "http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/q/qemu-user-static-2.12.0-1.fc29.x86_64.rpm"
+      - PACKAGE: "http://dl.fedoraproject.org/pub/fedora/linux/updates/29/Everything/x86_64/Packages/q/qemu-user-static-3.0.0-3.fc29.x86_64.rpm"
       - FILES: "qemu-arm-static qemu-aarch64-static"
     steps:
       - run:
