@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: docker:17.10.0-ce-git
+      - image: docker:18.09.0-git
     environment:
       - PACKAGE: "http://dl.fedoraproject.org/pub/fedora/linux/updates/29/Everything/x86_64/Packages/q/qemu-user-static-3.0.0-3.fc29.x86_64.rpm"
       - FILES: "qemu-arm-static qemu-aarch64-static"
