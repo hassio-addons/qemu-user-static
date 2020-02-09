@@ -1,8 +1,8 @@
 #!/bin/sh
 # shellcheck disable=SC2034
 # ==============================================================================
-# Community Hass.io Add-ons: qemu-user-static
-# Registers qemu-*-static for all Hass.io supported processors
+# Community Home Assistant Add-ons: qemu-user-static
+# Registers qemu-*-static for all Home Assistant supported processors
 # ==============================================================================
 
 # List of processors to target

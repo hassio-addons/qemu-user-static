@@ -1,4 +1,4 @@
-# Community Hass.io Add-ons: qemu-user-static
+# Community Home Assistant Add-ons: qemu-user-static
 
 [![GitHub Release][releases-shield]][releases]
 ![Project Stage][project-stage-shield]
@@ -21,8 +21,8 @@ This repository provides the user mode emulation binaries, built statically.
 In this mode, QEMU can launch Linux processes compiled for one CPU on another CPU.
 
 The supported emulation types and this repository as a whole is optimized for
-the use with Hass.io, and is therefore limited to architectures supported by
-Hass.io to minimize the build size.
+the use with Home Assistnt, and is therefore limited to architectures supported
+by Home Assistant to minimize the build size.
 
 ## Docker status
 
@@ -84,7 +84,7 @@ check [the contributor's page][contributors].
 
 MIT License
 
-Copyright (c) 2017 Franck Nijhof
+Copyright (c) 2017-2020 Franck Nijhof
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -116,14 +116,15 @@ SOFTWARE.
 [commits-shield]: https://img.shields.io/github/commit-activity/y/hassio-addons/qemu-user-static.svg
 [commits]: https://github.com/hassio-addons/qemu-user-static/commits/master
 [contributors]: https://github.com/hassio-addons/qemu-user-static/graphs/contributors
-[discord-shield]: https://img.shields.io/discord/330944238910963714.svg
-[discord]: https://discord.gg/c5DvZ4e
+[discord-ha]: https://discord.gg/c5DvZ4e
+[discord-shield]: https://img.shields.io/discord/478094546522079232.svg
+[discord]: https://discord.me/hassioaddons
 [forum-shield]: https://img.shields.io/badge/community-forum-brightgreen.svg
 [forum]: https://community.home-assistant.io/?u=frenck
 [frenck]: https://github.com/frenck
 [issue]: https://github.com/hassio-addons/qemu-user-static/issues
 [license-shield]: https://img.shields.io/github/license/hassio-addons/qemu-user-static.svg
-[maintenance-shield]: https://img.shields.io/maintenance/yes/2019.svg
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2020.svg
 [project-stage-shield]: https://img.shields.io/badge/project%20stage-production%20ready-brightgreen.svg
 [reddit]: https://reddit.com/r/homeassistant
 [releases-shield]: https://img.shields.io/github/release/hassio-addons/qemu-user-static.svg
