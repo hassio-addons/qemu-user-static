@@ -1,4 +1,4 @@
-# Community Home Assistant Add-ons: qemu-user-static
+# Home Assistant Community Add-ons: qemu-user-static
 
 [![GitHub Release][releases-shield]][releases]
 ![Project Stage][project-stage-shield]

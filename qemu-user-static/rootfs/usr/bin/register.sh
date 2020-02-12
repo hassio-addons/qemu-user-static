@@ -1,7 +1,7 @@
 #!/bin/sh
 # shellcheck disable=SC2034
 # ==============================================================================
-# Community Home Assistant Add-ons: qemu-user-static
+# Home Assistant Community Add-ons: qemu-user-static
 # Registers qemu-*-static for all Home Assistant supported processors
 # ==============================================================================
 
