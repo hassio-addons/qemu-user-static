@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: docker:stable-git
     environment:
-      - PACKAGE: "https://www.rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/q/qemu-user-static-4.2.0-4.fc32.x86_64.rpm"
+      - PACKAGE: "https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/q/qemu-user-static-5.0.0-2.fc33.x86_64.rpm"
       - FILES: "qemu-arm-static qemu-aarch64-static"
     steps:
       - run:
