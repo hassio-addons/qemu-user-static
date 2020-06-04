@@ -12,12 +12,13 @@ CMD ["/usr/bin/register.sh"]
 
 LABEL \
     maintainer="Franck Nijhof <frenck@addons.community>" \
-    org.label-schema.description="Registers qemu-*-static for all Home Assistant supported processors" \
-    org.label-schema.build-date=${BUILD_DATE} \
-    org.label-schema.name="qemu-user-static" \
-    org.label-schema.schema-version="1.0" \
-    org.label-schema.url="https://addons.community" \
-    org.label-schema.usage="https://github.com/hassio-addons/qemu-user-static/tree/master/README.md" \
-    org.label-schema.vcs-ref=${BUILD_REF} \
-    org.label-schema.vcs-url="https://github.com/hassio-addons/qemu-user-static" \
-    org.label-schema.vendor="Home Assistant Community Add-ons"
+    org.opencontainers.image.title="qemu-user-static" \
+    org.opencontainers.image.description="Registers qemu-*-static for all Home Assistant supported processors" \
+    org.opencontainers.image.vendor="Home Assistant Community Add-ons" \
+    org.opencontainers.image.authors="Franck Nijhof <frenck@addons.community>" \
+    org.opencontainers.image.licenses="MIT" \
+    org.opencontainers.image.url="https://addons.community" \
+    org.opencontainers.image.source="https://github.com/hassio-addons/qemu-user-static" \
+    org.opencontainers.image.documentation="https://github.com/hassio-addons/qemu-user-static/tree/master/README.md" \
+    org.opencontainers.image.created=${BUILD_DATE} \
+    org.opencontainers.image.revision=${BUILD_REF}
